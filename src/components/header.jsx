@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
-export default function Header( {location} ) {
+export function Header( {location} ) {
   
   return (
     <header>

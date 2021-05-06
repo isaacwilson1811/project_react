@@ -1,5 +1,5 @@
 import { Route, Switch, useLocation } from 'react-router-dom';
-import Header from './components/header';
+import { Header } from './components';
 import { Blog, About } from './views';
 
 export default function App() {
