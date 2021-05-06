@@ -13,7 +13,7 @@ export default function App() {
 
       <section className='view'>
         <Switch>
-
+        
           <Route path="/blog">
             <Blog />
           </Route>
@@ -29,6 +29,10 @@ export default function App() {
           <AuthRoute path="/secret">
             <Secret />
           </AuthRoute>
+
+          <Route path="/*">
+            <Blog />
+          </Route>
 
         </Switch>
       </section>
