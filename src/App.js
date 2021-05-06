@@ -1,6 +1,8 @@
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { Header } from './components';
-import { Blog, About } from './views';
+import { Blog, About, Login } from './views';
+import { Secret } from './views/protected/secret';
+import { AuthRoute } from './globalContext/authRoute';
 
 export default function App() {
   const location = useLocation();
@@ -9,7 +11,7 @@ export default function App() {
     <>
       <Header location={location} />
 
-      <section>
+      <section className='view'>
         <Switch>
 
           <Route path="/blog">
@@ -19,6 +21,14 @@ export default function App() {
           <Route path="/about">
             <About />
           </Route>
+
+          <Route path='/login'>
+            <Login />
+          </Route>
+
+          <AuthRoute path="/secret">
+            <Secret />
+          </AuthRoute>
 
         </Switch>
       </section>
