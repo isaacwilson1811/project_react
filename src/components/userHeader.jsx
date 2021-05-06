@@ -1,26 +1,14 @@
 import { useContext } from 'react';
 import { AuthContext } from '../globalContext';
-import { Menu, Button} from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-export function Header( {location} ) {
+export function UserHeader( {location} ) {
   const { isAuthed, user, logout } = useContext(AuthContext);
   
   return (
     <header>
-      <Menu inverted>
-
-        <Menu.Item name='blog' active={location.pathname.includes('/blog')}>
-          <Link to='/blog'>Blog</Link>
-        </Menu.Item>
-
-        <Menu.Item name='about' active={location.pathname.includes('/about')}>
-          <Link to='/about'>About</Link>
-        </Menu.Item>
-
-        <Menu.Item name='secret' active={location.pathname.includes('/secret')}>
-        <Link to='/secret'>Secret</Link>
-        </Menu.Item>
+      <Menu style={{display:'flex',justifyContent:'flex-end'}} inverted color='teal' >
 
         {isAuthed ? (
         <>
@@ -29,7 +17,7 @@ export function Header( {location} ) {
         </Menu.Item>
 
         <Menu.Item name ='logout' onClick={() => logout()}>
-        Log Out
+        <Link to="/login">Log Out</Link>
         </Menu.Item>
         </>
         ) : (
@@ -43,8 +31,6 @@ export function Header( {location} ) {
         </Menu.Item>
         </>
         )}
-        
-        
       </Menu>
     </header>
   );
