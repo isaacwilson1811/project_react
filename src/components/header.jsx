@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../globalContext';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Button} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 export function Header( {location} ) {
