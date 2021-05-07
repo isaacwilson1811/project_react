@@ -5,26 +5,26 @@ import { Container, Divider, Segment, Button, Icon } from 'semantic-ui-react'
 import { useContext } from 'react';
 import { AuthContext } from '../globalContext';
 
-export function BlogPost() {
-
+export function BlogPost({ post, saveLike }) {
+  const {title, author, content, likes, dislikes, id} = post;
   const { isAuthed } = useContext(AuthContext);
 
-  const [title, setTitle] = useState('Fetching Content');
-  const [author, setAuthor] = useState('');
-  const [sig, setSig] = useState('');
-  const [content, setContent] = useState('');
-  const [likeCount, setLikeCount] = useState(0);
-  const [dislikeCount, setDislikeCount] = useState(0);
+  // const [title, setTitle] = useState('Fetching Content');
+  // const [author, setAuthor] = useState('');
+  // const [sig, setSig] = useState('');
+  // const [content, setContent] = useState('');
+  // const [likeCount, setLikeCount] = useState(0);
+  // const [dislikeCount, setDislikeCount] = useState(0);
 
-  useEffect( () => {
-    getFakeText(Math.floor(Math.random()*(800-400)+400))
-    .then(fakeText => {
-      setTitle(fakeText.title);
-      setAuthor(`Author: ${fakeText.author}`);
-      setContent(fakeText.content);
-      setSig(`- ${fakeText.genre}`);
-    })
-  },[]);
+  // useEffect( () => {
+  //   getFakeText(Math.floor(Math.random()*(800-400)+400))
+  //   .then(fakeText => {
+  //     setTitle(fakeText.title);
+  //     setAuthor(`Author: ${fakeText.author}`);
+  //     setContent(fakeText.content);
+  //     setSig(`- ${fakeText.genre}`);
+  //   })
+  // },[]);
 
   return (
     <Segment>
@@ -34,18 +34,18 @@ export function BlogPost() {
         <p>{content.substr(100)}</p>
         <p>{content}</p>
         <p>{content.substr(200)}</p>
-        <h4>{sig}</h4>
+        {/* <h4>{sig}</h4> */}
       </Container>
-      <Divider horizontal>{likeCount} Likes | {dislikeCount} Dislikes</Divider>
+      <Divider horizontal>{likes} Likes | {dislikes} Dislikes</Divider>
 
       
       {isAuthed ? (
     
       <div style={{display:'flex',justifyContent:'center'}}>
-        <Button color='teal' icon onClick={()=>setLikeCount(likeCount+1)}>
+        <Button color='teal' icon onClick={()=>saveLike(id)}>
           <Icon name='thumbs up outline' />
         </Button>
-        <Button color='teal' icon onClick={()=>setDislikeCount(dislikeCount+1)}>
+        <Button color='teal' icon >
           <Icon name='thumbs down outline' />
         </Button>
       </div>
