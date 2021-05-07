@@ -18,6 +18,10 @@ export function NavHeader( {location} ) {
           <Link to='/about'>About</Link>
         </Menu.Item>
 
+        <Menu.Item name='drawing' active={location.pathname.includes('/drawing')}>
+          <Link to='/drawing'>Drawing Canvas</Link>
+        </Menu.Item>
+
         {isAuthed ? (
         <Menu.Item name='secret' active={location.pathname.includes('/secret')}>
           <Link to='/secret'>Secret</Link>

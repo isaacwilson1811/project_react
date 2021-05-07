@@ -1,6 +1,6 @@
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { NavHeader, UserHeader } from './components';
-import { Blog, About, Login } from './views';
+import { Blog, About, Login, Drawing } from './views';
 import { Secret } from './views/protected/secret';
 import { AuthRoute } from './globalContext/authRoute';
 
@@ -23,6 +23,10 @@ export default function App() {
 
           <Route path="/about">
             <About />
+          </Route>
+
+          <Route path="/drawing">
+            <Drawing />
           </Route>
 
           <Route path='/login'>
