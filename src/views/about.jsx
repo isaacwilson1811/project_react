@@ -1,16 +1,28 @@
-import { useUserStore } from '../store/userStore';
+import { useEffect } from 'react';
+import { useAboutStore } from '../store/aboutStore';
 
 
 export function About(){
-  const [users, addUser, clearUsers] = useUserStore(state => [state.users, state.addUser, state.clearUsers]);
+  const [loading, companyData, fetchData, loadDataFromStorage, hasData, checkHasData] = 
+  useAboutStore(state => [state.loading, state.companyData, state.fetchData, state.loadDataFromStorage, state.hasData, state.checkHasData]);
+  const checkLoading = useAboutStore(state => state.checkLoading)
+
+  useEffect(()=>{
+    if(checkLoading()){fetchData()}
+    
+  },[]);
+
   return (
     <>
-    <h1>Users:</h1>
-    <button onClick={addUser}>add user</button>
-    <button onClick={clearUsers}>clear users</button>
-    <u>
-    {users.map((user)=><li>{user}</li>)}
-    </u>
+      {loading ? (
+        <h1>loading</h1>
+      ) : (
+        <>
+        <h1>{companyData[0].name}</h1>
+        <p>{companyData[0].phone}</p>
+        </>
+      )}
     </>
+
   );
 }
