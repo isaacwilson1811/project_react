@@ -3,6 +3,7 @@ export function Delete(){
     localStorage.clear('IsaacReactApp-AboutStore');
     localStorage.clear('IsaacReactApp-BlogStore');
     localStorage.clear('IsaacReactApp-UserStore');
+    localStorage.clear('IsaacReactApp-DrawingStore');
     sessionStorage.clear('IsaacReactApp-SessionStore');
     window.location.reload();
   }

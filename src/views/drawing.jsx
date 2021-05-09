@@ -1,7 +1,20 @@
 import React, { useRef, useEffect, useState} from 'react'
 import paper_texture from '../img/paper_texture.png';
+import { useDrawingStore } from '../store';
 
 export function Drawing(){
+  const [dataURL, saveDataURL, loadDataURL] = useDrawingStore(state => [state.dataURL, state.saveDataURL, state.loadDataURL]);
+  
+  const handleSave = (url) => {
+    saveDataURL(url);
+  }
+  const handleLoad = () => {
+    
+    const src = loadDataURL();
+    console.log(src);
+  }
+
+
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -58,6 +71,10 @@ export function Drawing(){
     onMouseMove = {draw}
     ref = {canvasRef}
     />
+    <button onClick={()=>{
+      handleSave(canvasRef.current.toDataURL());
+    }}>Save</button>
+    <input type='text' value={loadDataURL()}></input>
     </div>
     </>
   )
