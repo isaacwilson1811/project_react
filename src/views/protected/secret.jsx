@@ -73,6 +73,6 @@ export function Secret(){
   },[]);
   
   return (
-    <canvas ref = {canvasRef} style={{backgroundColor:'black'}}/>
+      <canvas ref = {canvasRef} style={{backgroundColor:'black'}}/>    
   )
 }

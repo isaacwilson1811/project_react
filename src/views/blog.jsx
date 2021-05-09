@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useBlogStore } from '../store/blogStore';
+import { useBlogStore } from '../store';
 import { BlogPost } from '../components';
 
 export function Blog(){

@@ -21,7 +21,7 @@ export const useBlogStore = create(persist(
     }
   }),
   {
-    name: 'zustand-store',
+    name: 'IsaacReactApp-BlogStore',
     version: 0.1,
     getStorage: () => localStorage
   }
