@@ -1,18 +1,10 @@
 import { Route, Switch, useLocation } from 'react-router-dom';
-// import { NavHeader, UserHeader } from './components';
-import { NavHeader } from './components/navHeaderTest';
-import { UserHeader } from './components/userHeaderTest';
-
+import { NavHeader, UserHeader } from './components';
 import { Blog, About, Login, Drawing } from './views';
-import { LoginTest } from './views/loginTest';
-import { Secret } from './views/protected/secret';
-import { Protect } from './views/protected/protect';
-// import { useSessionStore } from './store';
-import { AuthRoute } from './globalContext/authRoute';
+import { Protect, Profile} from './views/protected';
 
 export default function App() {
   const location = useLocation();
-  // const loggedIn = useSessionStore(state => state.loggedIn);
   
   return (
     <>
@@ -24,8 +16,8 @@ export default function App() {
       <section className='view'>
         <Switch>
 
-          <Route path="/logintest">
-            <LoginTest />
+          <Route path="/login">
+            <Login />
           </Route>
 
           <Route path="/blog">
@@ -44,8 +36,8 @@ export default function App() {
             <Login />
           </Route>
 
-          <Protect path="/secret">
-            <Secret />
+          <Protect path="/profile">
+            <Profile />
           </Protect>
 
           <Route path="/*">

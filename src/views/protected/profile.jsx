@@ -16,7 +16,7 @@ class Dot {
   }
 }
 
-export function Secret(){
+export function Profile(){
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
 
@@ -73,6 +73,18 @@ export function Secret(){
   },[]);
   
   return (
-      <canvas ref = {canvasRef} style={{backgroundColor:'black'}}/>    
+    <>
+      <div style={{
+        backgroundColor:'rgba(0,0,0,0)',
+        color:'white',
+        position:'absolute',
+        top:'30%',
+        right:'40%'
+        }}>
+        <h1>USER PROFILE</h1>
+        <p>Secret Information</p>
+      </div>
+      <canvas ref = {canvasRef} style={{backgroundColor:'#103030'}}/>
+    </>
   )
 }

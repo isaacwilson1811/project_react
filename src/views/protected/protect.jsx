@@ -12,7 +12,7 @@ export function Protect({ children, ...rest }) {
     if (redirect) {
         return (
             <Redirect to={{
-                pathname: "/logintest"
+                pathname: "/login"
             }} />
         )
     }

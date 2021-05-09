@@ -1,36 +1,27 @@
-import { useContext } from 'react';
-import { AuthContext } from '../globalContext';
+import { useSessionStore } from '../store';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-export function UserHeader( {location} ) {
-  const { isAuthed, user, logout } = useContext(AuthContext);
+export function UserHeader() {
+  const [currentUser, loggedIn, logOut] = 
+  useSessionStore(state => [state.currentUser, state.loggedIn, state.logOut]);
   
   return (
     <header>
-      <Menu style={{display:'flex',justifyContent:'flex-end'}} inverted color='teal' >
+      <Menu style={{display:'flex',justifyContent:'flex-end'}} inverted color='teal'>
 
-        {isAuthed ? (
-        <>
+        {
+          loggedIn ? (
+            <Menu.Item active={true}>
+              {currentUser.name}
+            </Menu.Item>
+          ) : (null)
+        }
+        
         <Menu.Item>
-          Welcome {user.email}
+          <Link onClick={logOut} to="/login">{loggedIn ? 'Log Out' : 'Log In'}</Link>
         </Menu.Item>
 
-        <Menu.Item name ='logout' onClick={() => logout()}>
-        <Link to="/login">Log Out</Link>
-        </Menu.Item>
-        </>
-        ) : (
-        <>
-        <Menu.Item>
-          Anonymous User
-        </Menu.Item>
-
-        <Menu.Item name ='login' active={location.pathname.includes('/login')}>
-        <Link to="/login">Log In</Link>
-        </Menu.Item>
-        </>
-        )}
       </Menu>
     </header>
   );

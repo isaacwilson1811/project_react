@@ -1,10 +1,9 @@
-import { useContext } from 'react';
-import { AuthContext } from '../globalContext';
+import { useSessionStore } from '../store';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 export function NavHeader( {location} ) {
-  const { isAuthed } = useContext(AuthContext);
+  const loggedIn = useSessionStore(state => state.loggedIn);
   
   return (
     <header>
@@ -22,9 +21,9 @@ export function NavHeader( {location} ) {
           <Link to='/drawing'>Drawing Canvas</Link>
         </Menu.Item>
 
-        {isAuthed ? (
-        <Menu.Item name='secret' active={location.pathname.includes('/secret')}>
-          <Link to='/secret'>Secret</Link>
+        {loggedIn ? (
+        <Menu.Item name='profile' active={location.pathname.includes('/profile')}>
+          <Link to='/profile'>Profile</Link>
         </Menu.Item>
         ) : (
         <>

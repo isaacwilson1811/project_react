@@ -1,45 +1,43 @@
-import { useContext, useState } from 'react';
+import { useSessionStore } from '../store';
+import { useState } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
-import { AuthContext } from '../globalContext';
-import { Form, Button } from 'semantic-ui-react';
 
-export function Login(props) {
-const [redirect, setRedirect] = useState(false);
-const [loginForm, setLoginForm] = useState({});
-const { isAuthed, updateUser, user, login, logout } = useContext(AuthContext);
-const { state } = useLocation();
 
-if (redirect) {
-return <Redirect to={state?.from || "/"} />;
-}
-if (isAuthed) {
-return (
-        <button onClick={() => logout(() => setRedirect(false))}>Log out</button>
-    );
-}
+export function Login(){
+  const [redirect, setRedirect] = useState(false);
+  const [loginForm, setLoginForm] = useState({});
+  const { state } = useLocation();
+  const [currentUser, loggedIn, logIn] = 
+  useSessionStore(state => [state.currentUser, state.loggedIn, state.logIn]);
+  
+  if (redirect) {
+    return <Redirect to={state?.from || "/"} />;
+  }
 
-const handleChange = (e) => {
+  const handleChange = (e) => {
     const { target: { value, name } } = e;
     setLoginForm({
         ...loginForm,
         [name]: value
     });
-}
+  }
 
-return (
-    <Form style={{
-        width: 400,
-        margin: '32px auto'
-    }} onSubmit={() => login(loginForm, () => setRedirect(true))}>
-        <Form.Field>
-            <label>Email Address</label>
-            <input name='email' placeholder='email' onChange={handleChange} />
-        </Form.Field>
-        <Form.Field>
-            <label>Password</label>
-            <input name='password' type='password' placeholder='password' onChange={handleChange} />
-        </Form.Field>
-        <Button type='submit'>Submit</Button>
-    </Form>
-);
+  const handleLogIn = () =>{
+    logIn(loginForm);
+    setRedirect(true);
+  }
+  
+  return (
+    <>
+    <h1>Welcome, {currentUser === null ? ('nobody') : (currentUser.name)}</h1>
+    <p>You are {loggedIn ? ('logged in') : ('not logged in')}</p>
+    {loggedIn ? (null) : (
+      <>
+      <input name='name' placeholder='name' onChange={handleChange} />
+      <button onClick={handleLogIn}>Log In</button>
+      </>
+      
+    )}
+    </>
+  )
 }
