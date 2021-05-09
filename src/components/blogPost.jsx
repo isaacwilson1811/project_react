@@ -1,11 +1,9 @@
 
 import { Container, Divider, Segment, Button, Icon } from 'semantic-ui-react'
-
-import { useContext } from 'react';
-import { AuthContext } from '../globalContext';
+import { useSessionStore } from '../store';
 
 export function BlogPost({ title, author, content, genre }) {
-  const { isAuthed } = useContext(AuthContext);
+  const loggedIn = useSessionStore(state => state.loggedIn);
   
   return (
     <Segment>
@@ -20,7 +18,7 @@ export function BlogPost({ title, author, content, genre }) {
       <Divider horizontal>0 Likes | 0 Dislikes</Divider>
 
       
-      {isAuthed ? (
+      {loggedIn ? (
     
       <div style={{display:'flex',justifyContent:'center'}}>
         <Button color='teal' icon >

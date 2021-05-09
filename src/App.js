@@ -1,9 +1,12 @@
 import { Route, Switch, useLocation } from 'react-router-dom';
-import { NavHeader, UserHeader } from './components';
+// import { NavHeader, UserHeader } from './components';
+import { NavHeader } from './components/navHeaderTest';
+import { UserHeader } from './components/userHeaderTest';
+
 import { Blog, About, Login, Drawing } from './views';
 import { LoginTest } from './views/loginTest';
 import { Secret } from './views/protected/secret';
-// import { Protect } from './views/protected/protect';
+import { Protect } from './views/protected/protect';
 // import { useSessionStore } from './store';
 import { AuthRoute } from './globalContext/authRoute';
 
@@ -41,9 +44,9 @@ export default function App() {
             <Login />
           </Route>
 
-          <AuthRoute path="/secret">
+          <Protect path="/secret">
             <Secret />
-          </AuthRoute>
+          </Protect>
 
           <Route path="/*">
             <Blog />

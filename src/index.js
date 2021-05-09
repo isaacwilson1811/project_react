@@ -8,9 +8,9 @@ import 'semantic-ui-css/semantic.min.css';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <ContextProvider>
+      {/* <ContextProvider> */}
           <App />
-      </ContextProvider>
+      {/* </ContextProvider> */}
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

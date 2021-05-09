@@ -1,19 +1,30 @@
 import { useSessionStore } from '../../store';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 
-export function Protect({ children, ...rest }){
-  const loggedIn = useSessionStore(state => state.loggedIn);
-  return (
-    <Route {...rest} render={({ location }) => {
-        if (loggedIn) {
-            return children;
-        }
+export function Protect({ children, ...rest }) {
+    const loggedIn = useSessionStore(state => state.loggedIn);
+
+    const [redirect, setRedirect] = useState(false);
+
+
+
+    if (redirect) {
         return (
             <Redirect to={{
-                pathname: "/logintest",
-                state: { from: location }
+                pathname: "/logintest"
             }} />
-        );
-    }} />
-)
+        )
+    }
+
+    return (
+        <Route {...rest} render={({ }) => {
+            if (loggedIn) {
+                return children;
+            }else{
+                setRedirect(true);
+            }
+            
+        }} />
+    )
 }
