@@ -1,15 +1,20 @@
-import { LocalDataFunc, BlogContextProvider, useBlogContext } from '../utils/localData';
-import { BlogPost } from '../components';
+// import { LocalDataFunc, BlogContextProvider, useBlogContext } from '../utils/localData';
+// import { BlogPost } from '../components';
 
-export function Blog() {
-  const {posts, saveLike } = useBlogContext();
-  console.log(posts);
+// export function Blog() {
+//   const {posts, saveLike } = useBlogContext();
+//   console.log(posts);
+//   return (
+//     <>
+//       {posts?.map((post)=> (<BlogPost 
+//         saveLike={saveLike}
+//         post={post}/>
+//       ))}
+//     </>
+//   );
+// }
+export function Blog(){
   return (
-    <>
-      {posts?.map((post)=> (<BlogPost 
-        saveLike={saveLike}
-        post={post}/>
-      ))}
-    </>
-  );
+    <h1>Blog</h1>
+  )
 }

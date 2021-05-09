@@ -1,5 +1,5 @@
 import React, { useEffect, createContext, useContext, useState } from 'react';
-import { getFakeText } from '../utils';
+import { getFakeText } from '.';
 export const BlogContext = createContext({});
 export const useBlogContext = () => {
   return useContext(BlogContext)
@@ -62,12 +62,12 @@ async function createPost(id){
   return post;
 }
 
-export function LocalDataFunc() {
-  useEffect( () => {
-    BlogData.checkStorage();
-  },[]);
-  return(<></>);
-}
+// export function LocalDataFunc() {
+//   useEffect( () => {
+//     BlogData.checkStorage();
+//   },[]);
+//   return(<></>);
+// }
 
 const blogdata = new BlogData();
 export function BlogContextProvider(props){
