@@ -1,20 +1,28 @@
-// import { LocalDataFunc, BlogContextProvider, useBlogContext } from '../utils/localData';
-// import { BlogPost } from '../components';
+import { useEffect } from 'react';
+import { useBlogStore } from '../store/blogStore';
+import { BlogPost } from '../components';
 
-// export function Blog() {
-//   const {posts, saveLike } = useBlogContext();
-//   console.log(posts);
-//   return (
-//     <>
-//       {posts?.map((post)=> (<BlogPost 
-//         saveLike={saveLike}
-//         post={post}/>
-//       ))}
-//     </>
-//   );
-// }
 export function Blog(){
+  const [arr, initArr] = useBlogStore(state => [state.arr, state.initArr]);
+  const checkStorageIsEmpty = useBlogStore(state => state.checkStorageIsEmpty);
+  const storageIsEmpty = useBlogStore(state => state.storageIsEmpty);
+
+  useEffect(()=>{
+    if(checkStorageIsEmpty()){initArr()}
+  },[]);
+
   return (
-    <h1>Blog</h1>
+    <>
+    {storageIsEmpty ? (
+      <h1>Fetching Data...</h1>
+      ) : (
+    arr.map((obj)=> (<BlogPost 
+      title={obj.title}
+      author={obj.author}
+      content={obj.content}
+      genre={obj.genre}
+    />))
+    )}
+    </>
   )
 }

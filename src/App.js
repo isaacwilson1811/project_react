@@ -1,7 +1,6 @@
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { NavHeader, UserHeader } from './components';
 import { Blog, About, Login, Drawing } from './views';
-import { ZustandTest } from './views/zustandTest';
 import { Secret } from './views/protected/secret';
 import { AuthRoute } from './globalContext/authRoute';
 
@@ -18,10 +17,6 @@ export default function App() {
       <section className='view'>
         <Switch>
 
-          <Route path="/test">
-            <ZustandTest />
-          </Route>
-        
           <Route path="/blog">
             <Blog />
           </Route>
