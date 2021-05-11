@@ -5,8 +5,9 @@ export const useUserStore = create(persist(
   (set, get) => ({
     storageIsEmpty: true,
     users: [],
-    addUser: () => {
-      set({ users: [...get().users, 'newUser'] });
+    addUser: (newUser) => {
+      set({ users: [...get().users, newUser] });
+      set(get().storageIsEmpty = false);
     },
     clearUsers: () => set({ users: [] }),
     checkStorageIsEmpty: () => {

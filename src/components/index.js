@@ -1,4 +1,5 @@
-export { UserHeader } from './userHeader';
-export { NavHeader } from './navHeader';
-export { BlogPost } from './blogPost';
-export { LogInForm } from './logInForm';
+export { UserHeader } from './userHeader'
+export { NavHeader } from './navHeader'
+export { BlogPost } from './blogPost'
+export { LoginForm } from './loginForm'
+export { NewUserForm } from './newUserForm'
