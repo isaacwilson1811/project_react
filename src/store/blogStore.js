@@ -18,6 +18,12 @@ export const useBlogStore = create(persist(
       const fakeBlog = await getFakeText(10,Math.floor(Math.random()*(800-400)+400));
       set({arr: fakeBlog});
       set({storageIsEmpty: false});
+    },
+    postLikes: [],
+    addPostLike: (postID,user,likeNum) =>{
+      
+      set(get().postLikes.push({id:postID,liked:[user],likeCount: likeNum}));
+      
     }
   }),
   {

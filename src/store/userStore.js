@@ -9,9 +9,22 @@ export const useUserStore = create(persist(
       set({ users: [...get().users, newUser] });
       set(get().storageIsEmpty = false);
     },
-    clearUsers: () => set({ users: [] }),
     checkStorageIsEmpty: () => {
       return get().storageIsEmpty ? true : false
+    },
+    checkUserExists: (emailCheck) => {
+      let found = false;
+      console.log('checking for '+emailCheck);
+      get().users.forEach(user => {
+        console.log('looking at '+user.email);
+        if (user.email == emailCheck){
+          console.log('user is in the store');
+          found = true;
+        }else{
+          console.log('user not found');
+        }
+      })
+      return (found);
     }
   }),
   {

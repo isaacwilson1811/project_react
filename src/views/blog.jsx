@@ -16,11 +16,14 @@ export function Blog(){
     {storageIsEmpty ? (
       <h1>Fetching Data...</h1>
       ) : (
-    arr.map((obj)=> (<BlogPost 
+    arr.map((obj)=> (<BlogPost
+      id={obj.id} 
       title={obj.title}
       author={obj.author}
       content={obj.content}
       genre={obj.genre}
+      likes={obj.totalLikes}
+      dislikes={obj.totalDislikes}
     />))
     )}
     </>

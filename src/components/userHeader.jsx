@@ -13,7 +13,7 @@ export function UserHeader() {
         {
           loggedIn ? (
             <Menu.Item active={true}>
-              {currentUser.name}
+              {currentUser.email}
             </Menu.Item>
           ) : (null)
         }

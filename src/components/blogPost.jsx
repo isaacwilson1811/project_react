@@ -1,9 +1,17 @@
 
 import { Container, Divider, Segment, Button, Icon } from 'semantic-ui-react'
-import { useSessionStore } from '../store';
+import { useSessionStore , useBlogStore } from '../store';
 
-export function BlogPost({ title, author, content, genre }) {
-  const loggedIn = useSessionStore(state => state.loggedIn);
+export function BlogPost({ title, author, content, genre, id, totalLikes, totalDislikes }) {
+  const [loggedIn, currentUser] = useSessionStore(state => [state.loggedIn, state.currentUser]);
+  const addPostLike = useBlogStore(state => state.addPostLike);
+
+
+  const handleLike = (id) => {
+    console.log(currentUser.email+' liked post id '+id);
+    addPostLike(id,currentUser.email,1);
+
+  }
   
   return (
     <Segment>
@@ -21,7 +29,7 @@ export function BlogPost({ title, author, content, genre }) {
       {loggedIn ? (
     
       <div style={{display:'flex',justifyContent:'center'}}>
-        <Button color='teal' icon >
+        <Button color='teal' icon onClick={()=>{handleLike(id)}}>
           <Icon name='thumbs up outline' />
         </Button>
         <Button color='teal' icon >
