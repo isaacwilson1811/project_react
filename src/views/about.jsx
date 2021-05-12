@@ -32,7 +32,6 @@ export function About(){
         <p>{companyData[0].phone}</p>
         <p>{companyData[0].addresses[0].city}</p>
         <p>{companyData[0].addresses[0].country}</p>
-        {console.log(companyData[0])}
         </>
       )}
 

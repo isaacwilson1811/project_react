@@ -1,4 +1,5 @@
 import React, { useRef, useEffect} from 'react'
+import { useSessionStore } from '../../store'
 
 function random_rgba() {
   var o = Math.round, r = Math.random, s = 255;
@@ -17,6 +18,7 @@ class Dot {
 }
 
 export function Profile(){
+  const currentUser = useSessionStore(state => state.currentUser)
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
 
@@ -83,6 +85,9 @@ export function Profile(){
         }}>
         <h1>USER PROFILE</h1>
         <p>Secret Information</p>
+        <h2>{currentUser.id}</h2>
+        <h3>{currentUser.firstName} {currentUser.lastName}</h3>
+        <h4>{currentUser.email}</h4>
       </div>
       <canvas ref = {canvasRef} style={{backgroundColor:'#103030'}}/>
     </>
