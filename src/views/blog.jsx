@@ -3,12 +3,12 @@ import { useBlogStore } from '../store';
 import { BlogPost } from '../components';
 
 export function Blog(){
-  const [arr, initArr] = useBlogStore(state => [state.arr, state.initArr]);
+  const [posts, fetchPosts] = useBlogStore(state => [state.posts, state.fetchPosts]);
   const checkStorageIsEmpty = useBlogStore(state => state.checkStorageIsEmpty);
   const storageIsEmpty = useBlogStore(state => state.storageIsEmpty);
 
   useEffect(()=>{
-    if(checkStorageIsEmpty()){initArr()}
+    if(checkStorageIsEmpty()){fetchPosts()}
   },[]);
 
   return (
@@ -16,7 +16,7 @@ export function Blog(){
     {storageIsEmpty ? (
       <h1>Fetching Data...</h1>
       ) : (
-    arr.map((obj)=> (<BlogPost
+    posts.map((obj)=> (<BlogPost
       id={obj.id} 
       title={obj.title}
       author={obj.author}

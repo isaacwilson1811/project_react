@@ -1,29 +1,31 @@
-import { useUserStore } from '../store';
-import { useState } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import { useUserStore, useSessionStore } from '../store'
+import { useState } from 'react'
+import { Form, Button } from 'semantic-ui-react'
 
 
 export const NewUserForm = () => {
   // form state hook
-  const [formData, setFormData] = useState({
+  const blankForm = {
     firstName: '',
     lastName: '',
-    email: '',
-    password: ''
-  });
+    email: ''
+  }
+  const [formData, setFormData] = useState(blankForm);
   // global store state hook
-  const addUser = useUserStore(state => state.addUser);
+  const logIn = useSessionStore(state => state.logIn)
+  const addUser = useUserStore(state => state.addUser)
   // insert data into global store function
-  const createNewUser = ({firstName, lastName, email, password}) =>{
+  const createNewUser = ({firstName, lastName, email}) =>{
     let uid = Date.now().toString(36) + Math.random().toString(36).substr(2);
     let newUserData = {
       id: uid,
       firstName: firstName,
       lastName: lastName,
-      email: email,
-      password: password
+      email: email
     }
     addUser(newUserData);
+    logIn(newUserData);
+    setFormData(blankForm);
   }
 
 

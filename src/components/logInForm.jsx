@@ -20,11 +20,11 @@ export function LoginForm(){
   }
 
   const handleLogIn = () =>{
-    if(checkUserExists(loginForm.email.toString())){
-      logIn(loginForm);
-      setRedirect(true);
-    }else{
-      return;
+    let foundUser = checkUserExists(loginForm.email.toString());
+    if(foundUser == null){return}
+    else{
+      logIn(foundUser);
+      // setRedirect(true);
     }
     
   }
@@ -33,7 +33,7 @@ export function LoginForm(){
     <>
     <div style={{width: 400,margin: '32px auto'}}>
     <p>You are {loggedIn ? ('currently logged in.') : ('not logged in.')}</p>
-    <h1>{currentUser === null ? ('Please Log In') : ('Welcome Back, ' + currentUser.email)}</h1>
+    <h1>{currentUser === null ? ('Please Log In') : (`Welcome, ${currentUser.firstName} ${currentUser.lastName}`)}</h1>
     
     {loggedIn ? (null) : (
       <>

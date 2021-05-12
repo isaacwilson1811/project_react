@@ -1,22 +1,27 @@
 import { LoginForm } from '../components';
 import { NewUserForm } from '../components';
+import { useSessionStore } from '../store';
+import { Container, Divider, Segment} from 'semantic-ui-react'
 
-import { Container, Divider, Segment, Button, Icon } from 'semantic-ui-react'
-
-export function Login(){  
+export function Login() {
+  const loggedIn = useSessionStore(state => state.loggedIn);
   return (
     <>
-      <Segment>
-        <Container>
-          <LoginForm />
-        </Container>
-      </Segment>
-      <Divider horizontal> OR </Divider>
-      <Segment>
-        <Container>
-          <NewUserForm />
-        </Container>
-      </Segment>
+    <Segment>
+      <Container>
+        <LoginForm />
+      </Container>
+    </Segment>
+    {loggedIn ? (<></>) : (
+    <>
+    <Divider horizontal> OR </Divider>
+    <Segment>
+      <Container>
+        <NewUserForm />
+      </Container>
+    </Segment>
+    </>
+    )}
     </>
   )
 }

@@ -5,17 +5,13 @@ export const useSessionStore = create(persist(
   (set, get) => ({
     currentUser: null,
     loggedIn: false,
-    logIn: (obj) => {
-      set(get().currentUser = obj);
-      set(get().loggedIn = true)
-      set(get().email = null);
-      set(get().password = null);
+    logIn: (user) => {
+      set({currentUser: user})
+      set({loggedIn: true})
     },
     logOut: () => {
-      set(get().currentUser = null);
-      set(get().loggedIn = false);
-      set(get().email = null);
-      set(get().password = null);
+      set({currentUser: null})
+      set({loggedIn: false})
     }
   }),
   {
