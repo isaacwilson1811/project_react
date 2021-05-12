@@ -13,6 +13,10 @@ export const useBlogStore = create(persist(
       const fakePosts = await getFakeText(10,Math.floor(Math.random()*(800-400)+400));
       set({posts: fakePosts});
       set({storageIsEmpty: false});
+    },
+    likeDataArr: [],
+    addLikeDataObj: (obj) => {
+      set({likeDataArr: [...get().likeDataArr, obj]})
     }
   }),
   {

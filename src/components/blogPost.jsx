@@ -1,11 +1,11 @@
 
 import { Container, Divider, Segment, Button, Icon } from 'semantic-ui-react'
 import { useSessionStore , useBlogStore } from '../store';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function BlogPost({ title, author, content, genre, id }) {
   const [loggedIn, currentUser] = useSessionStore(state => [state.loggedIn, state.currentUser]);
-  const posts = useBlogStore(state => state.posts);
+  const [posts, likeDataArr, addLikeDataObj] = useBlogStore(state => [state.posts, state.likeDataArr, state.addLikeDataObj]);
 
   const [likes, setLikes] = useState(0);
   const [usersThatLike, setUsersThatLike] = useState([]);
@@ -48,8 +48,20 @@ export function BlogPost({ title, author, content, genre, id }) {
         }
         break;
     }
-    
+    // let likeDataObj = {
+    //   id: postID,
+    //   likes: likes,
+    //   dislikes: dislikes,
+    //   usersThatDislike: usersThatDislike,
+    //   usersThatLike: usersThatLike
+    // }
+    // addLikeDataObj(likeDataObj)
+    // localStorage.setItem('likeData',JSON.stringify(likeDataArr))
   }
+
+  useEffect(()=>{
+    
+  })
   
   return (
     <Segment>
